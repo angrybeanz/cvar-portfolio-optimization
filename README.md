@@ -50,59 +50,66 @@ This makes CVaR indispensable for:
 
 ## Mathematical Formulation
 
-### **Mean–Variance Optimization (Markowitz)**
+### Mean–Variance Optimization (Markowitz)
 
-\[
-\max_{w} \ \mu^\top w - \gamma w^\top \Sigma w
-\]
+$$
+\max_{w} \ \mu^\top w - \gamma \, w^\top \Sigma w
+$$
 
 subject to:
 
-- \( w_i \ge 0 \)  
-- \( \sum_i w_i = 1 \)  
-- \( w_i \le 0.3 \)  
+$$
+\begin{aligned}
+w_i &\ge 0 \\
+\sum_i w_i &= 1 \\
+w_i &\le 0.3
+\end{aligned}
+$$
 
 ---
 
-### **CVaR Optimization (Rockafellar–Uryasev)**
+### CVaR Optimization (Rockafellar–Uryasev)
 
 Define portfolio loss:
 
-\[
-L_t = -r_t^\top w
-\]
+$$
+L_t = - r_t^\top w
+$$
 
 Minimize empirical CVaR:
 
-\[
-\min_{w, v, u} \ \ v + \frac{1}{\alpha N} \sum_{t=1}^{N} u_t
-\]
+$$
+\min_{w, v, u} \; v + \frac{1}{\alpha N} \sum_{t=1}^{N} u_t
+$$
 
 subject to:
 
-- \( u_t \ge 0 \)  
-- \( u_t \ge L_t - v \)  
-- \( w_i \ge 0, \ \sum_i w_i = 1, \ w_i \le 0.3 \)  
+$$
+\begin{aligned}
+u_t &\ge 0 \\
+u_t &\ge L_t - v \\
+w_i &\ge 0,\quad \sum_i w_i = 1,\quad w_i \le 0.3
+\end{aligned}
+$$
 
-This formulation is **convex** and solved using **CVXPY (CLARABEL solver)**.
+This formulation is convex and solved using CVXPY (CLARABEL solver).
 
 ---
 
 ## Project Structure
 
+```text
 CVaR-Portfolio-Optimization/
-│
 ├── notebooks/
-│ └── CVaR.ipynb # Full analysis, optimization, plots
-│
+│   └── CVaR.ipynb              # Full analysis, optimization, plots
 ├── figures/
-│ ├── weights_comparison.png
-│ ├── test_loss_hist.png
-│ ├── weights_bootstrap_box.png
-│ ├── sensitivity_plot.png
-│ └── weights_vs_probability.png
-│
-└── README.md # You are here
+│   ├── weights_comparison.png
+│   ├── test_loss_hist.png
+│   ├── weights_bootstrap_box.png
+│   ├── sensitivity_plot.png
+│   └── weights_vs_probability.png
+└── README.md                   # You are here
+```
 
 
 ---
